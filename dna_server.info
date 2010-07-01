@@ -3,5 +3,6 @@ description = Manages the services subscriptions/keys
 core = 6.x
 dependencies[] = dna
 dependencies[] = services
+dependencies[] = services_keyauth
 package = Pronovix
 
