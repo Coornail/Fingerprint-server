@@ -45,7 +45,5 @@ function dna_server_mail($key, &$message, $params) {
     $message['subject'] = t('Your dna credentials are ready!');
     $message['body'] = t("Welcome to our dna server!\n\nServer: !services_url\nUsername: !name\nApi key: !kid\n", $params);
   }
-  dd($message);
-
 }
 
