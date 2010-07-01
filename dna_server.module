@@ -1,3 +1,40 @@
 <?php
 
+/**
+ * Implementation of hook_user().
+ *
+ * Adds a services key when the user is registered
+ * Sends the key to the user by email
+ */
+function dna_server_user($op, &$edit, &$account, $category = NULL) {
+  if ($op != 'insert') {
+    return;
+  }
+
+  module_load_include('inc', 'services_keyauth', 'services_keyauth.admin');
+  $key = array();
+  $key['kid'] = md5(uniqid(mt_rand(), TRUE));
+  $key['title'] = $account->mail;
+  $key['domain'] = $account->name;
+  $key['method_access'] = array('system.connect', 'user.login', 'node.save');
+
+  $ret = services_keyauth_admin_keys_save(&$key);
+  if ($ret == SAVED_NEW) {
+    drupal_mail('dna_server', 'key_ready', $account->mail, user_preferred_language($account), array_merge($key, (array)$account));
+  }
+
+}
+
+
+/**
+ * Implementation of hook_mail
+ */
+function dna_server_mail($key, &$message, $params) {
+  $params['services_url'] = url('services/xmlrpc', array('absolute' => true));
+  if($key == 'key_ready') {
+    $message['subject'] = t('Your dna credentials are ready!');
+    $message['body'] = t("Welcome to our dna server!\n\nServer: !services_url\nUsername: !name\nApi key: !kid\n", $params);
+  }
+
+}
 
