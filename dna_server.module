@@ -13,7 +13,7 @@ function dna_server_menu() {
     'access arguments' => array(1),
     'type' => MENU_LOCAL_TASK,
     'load arguments' => array('%map', '%index'),
-    'file' => 'dna.pages.inc',
+    'file' => 'dna_server.pages.inc',
   );
 
   return $items;
