@@ -7,5 +7,6 @@ dependencies[] = services_keyauth
 dependencies[] = node_service
 dependencies[] = system_service
 dependencies[] = user_service
+dependencies[] = xmlrpc_server
 package = Pronovix
 
