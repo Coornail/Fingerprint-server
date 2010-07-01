@@ -4,5 +4,8 @@ core = 6.x
 dependencies[] = dna
 dependencies[] = services
 dependencies[] = services_keyauth
+dependencies[] = node_service
+dependencies[] = system_service
+dependencies[] = user_service
 package = Pronovix
 
