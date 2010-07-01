@@ -21,6 +21,9 @@ function dna_server_user($op, &$edit, &$account, $category = NULL) {
   $ret = services_keyauth_admin_keys_save(&$key);
   if ($ret == SAVED_NEW) {
     drupal_mail('dna_server', 'key_ready', $account->mail, user_preferred_language($account), array_merge($key, (array)$account));
+  } else {
+    drupal_set_message('Unable to generate api key, please contact the '. l('administrator', variable_get('site_mail')));
+    watchdog('dna_server', 'Unable to generate api key to uid '. $account->uid);
   }
 
 }
