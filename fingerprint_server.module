@@ -6,7 +6,7 @@
 function fingerprint_server_menu() {
   $items = array();
   $items['user/%user/site_fingerprint'] = array(
-    'title' => 'Dna credentials',
+    'title' => 'Fingerprint credentials',
     'page callback' => 'site_fingerprint_credentials',
     'page arguments' => array(1),
     'access callback' => 'user_edit_access',
