@@ -1,7 +1,7 @@
-name = Dna server
+name = Fingerprint server
 description = Manages the services subscriptions/keys
 core = 6.x
-dependencies[] = dna
+dependencies[] = fingerprint
 dependencies[] = services
 dependencies[] = services_keyauth
 dependencies[] = node_service

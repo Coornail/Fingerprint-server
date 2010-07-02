@@ -1,9 +1,9 @@
 <?php
 
 /**
- * Callback for user/%user/site_dna menu
+ * Callback for user/%user/site_fingerprint menu
  */
-function site_dna_credentials($user) {
+function site_fingerprint_credentials($user) {
   $api_key = db_result(db_query('SELECT kid FROM {services_keys} WHERE domain="%s"', $user->name));
   if (!$api_key) {
     $api_key = 'You don\'t have an api key. If you think it\'s our fault, please contact us: '. variable_get('site_mail', '');
