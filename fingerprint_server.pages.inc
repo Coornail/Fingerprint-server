@@ -8,7 +8,8 @@ function site_fingerprint_credentials($user) {
   if (!$api_key) {
     $api_key = 'You don\'t have an api key. If you think it\'s our fault, please contact us: '. variable_get('site_mail', '');
   }
-  $list[] = '<strong>Server: </strong>'. url('services/xmlrpc', array('absolute' => TRUE));
+  $list[] = '<strong>Server: </strong>'. url('<front>', array('absolute' => TRUE));
+  $list[] = '<strong>xmlrpc path: </strong>' . '?q=services/xmlrpc';
   $list[] = '<strong>Username: </strong>'. $user->name;
   $list[] = '<strong>Password: </strong> Drupal site password.';
   $list[] = '<strong>Api key: </strong>'. $api_key;
