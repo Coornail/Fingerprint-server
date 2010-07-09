@@ -1,0 +1,47 @@
+<?php
+// $Id$
+
+/**
+ * @file
+ *  Tests for fingerprint module
+ *
+ *  Copyright 2010 by Kornel Lugosi (Coornail)
+ *  Pronovix
+ */
+
+class fingerprint_server_registration extends DrupalWebTestCase {
+  var $info;
+  /**
+  * Implementation of getInfo().
+  */
+  public static function getInfo() {
+    return array(
+      'name' => t('Fingerprint server registration'),
+      'description' => t('Registration and email sending'),
+      'group' => t('Pronovix'),
+    );
+  }
+
+
+  /**
+  * Implementation of setUp().
+  */
+  public function setUp() {
+    parent::setUp('fingerprint_server', 'fingerprint', 'features', 'services', 'services_keyauth');
+  }
+
+
+  /**
+   * Tests user registration and email receiving
+   */
+  public function testRegistration() {
+    $this->drupalGet('user/register');
+
+    $edit['name'] = $this->randomName();
+    $edit['mail'] = $edit['name'] . '@example.com';
+
+    $this->drupalPost('user/register', $edit, t('Create new account'));
+  }
+
+}
+
