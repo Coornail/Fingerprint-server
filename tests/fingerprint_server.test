@@ -41,6 +41,8 @@ class fingerprint_server_registration extends DrupalWebTestCase {
     $edit['mail'] = $edit['name'] . '@example.com';
 
     $this->drupalPost('user/register', $edit, t('Create new account'));
+    $captured_emails = variable_get('drupal_test_email_collector', array());
+    $this->assertEqual(count($captured_emails), 2 , t('2 emails sent'));
   }
 
 }
