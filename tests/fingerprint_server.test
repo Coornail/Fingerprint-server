@@ -3,7 +3,7 @@
 
 /**
  * @file
- *  Tests for fingerprint module
+ *  Tests for fingerprint server module
  *
  *  Copyright 2010 by Kornel Lugosi (Coornail)
  *  Pronovix
