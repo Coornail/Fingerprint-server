@@ -1,0 +1,20 @@
+<?php
+
+/**
+ * Implementation of hook_install().
+ *
+ * Create the issue field instance
+ */
+function fingerprint_server_install() {
+  module_load_include('inc', 'content', 'includes/content.crud');
+  $field = array();
+  $field['field_name'] = 'field_issue_number';
+  $field['type_name'] = 'fingerprint';
+  $field['type'] = 'integer';
+  $field['module'] = 'number';
+  $field['required'] = FALSE;
+  $field['widget_type'] = 'number_integer';
+  $field['active'] = TRUE;
+  content_field_instance_create($field);
+}
+
