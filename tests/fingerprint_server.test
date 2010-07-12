@@ -27,7 +27,7 @@ class fingerprint_server_registration extends DrupalWebTestCase {
   * Implementation of setUp().
   */
   public function setUp() {
-    parent::setUp('fingerprint_server', 'fingerprint', 'features', 'services', 'services_keyauth');
+    parent::setUp('features', 'services', 'services_keyauth', 'content', 'number', 'fingerprint', 'fingerprint_server');
   }
 
 
