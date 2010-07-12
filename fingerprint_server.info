@@ -10,3 +10,4 @@ dependencies[] = user_service
 dependencies[] = xmlrpc_server
 package = Pronovix
 
+version = 0.1
