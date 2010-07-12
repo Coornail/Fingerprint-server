@@ -9,5 +9,6 @@ dependencies[] = system_service
 dependencies[] = user_service
 dependencies[] = xmlrpc_server
 dependencies[] = number
+dependencies[] = content
 package = Pronovix
 
