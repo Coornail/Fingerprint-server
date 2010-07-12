@@ -8,5 +8,6 @@ dependencies[] = node_service
 dependencies[] = system_service
 dependencies[] = user_service
 dependencies[] = xmlrpc_server
+dependencies[] = number
 package = Pronovix
 
