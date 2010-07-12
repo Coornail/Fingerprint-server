@@ -12,4 +12,5 @@ dependencies[] = number
 dependencies[] = content
 package = Pronovix
 
-version = 0.1
+version = 0.1-issue_cck
+
