@@ -6,15 +6,15 @@
  * Create the issue field instance
  */
 function fingerprint_server_install() {
-  module_load_include('inc', 'content', 'includes/content.crud');
-  $field = array();
-  $field['field_name'] = 'field_issue_number';
-  $field['type_name'] = 'fingerprint';
-  $field['type'] = 'integer';
-  $field['module'] = 'number';
-  $field['required'] = FALSE;
-  $field['widget_type'] = 'number_integer';
-  $field['active'] = TRUE;
-  content_field_instance_create($field);
+  include_once(drupal_get_path('module', 'node') .'/content_types.inc');
+  include_once(drupal_get_path('module', 'content') .'/includes/content.admin.inc');
+  module_enable(array('content', 'number'));
+  $values = array();
+  $values['type_name'] = 'fingerprint';
+  $values['macro'] = file_get_contents(drupal_get_path('module', 'fingerprint_server') .'/fingerprint.cck');
+
+  $form_state = array();
+  $form_state['values'] = $values;
+  drupal_execute("content_copy_import_form", $form_state);
 }
 
