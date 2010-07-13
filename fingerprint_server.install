@@ -8,10 +8,13 @@
  * @todo find a better solution for making sure content_node_field exists
  */
 function fingerprint_server_install() {
-  module_enable(array('content', 'number', 'features'));
-
+  module_enable(array('content'));
   // Forcefully install the schema
   drupal_install_schema('content');
+  module_enable(array('number'));
+  module_enable(array('features'));
+  module_enable(array('fingerprint'));
+
 }
 
 
@@ -51,6 +54,7 @@ function fingerprint_server_enable() {
         'allowed_values_php' => '',
         'op' => 'Save field settings',
         'module' => 'number',
+
         'widget_module' => 'number',
         'columns' =>
           array (
