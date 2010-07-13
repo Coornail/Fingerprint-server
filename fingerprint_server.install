@@ -3,9 +3,26 @@
 /**
  * Implementation of hook_install().
  *
- * Create the issue field instance
+ * Enable the necessary modules that are required in hook_enable()
+ *
+ * @todo find a better solution for making sure content_node_field exists
  */
 function fingerprint_server_install() {
+  module_enable(array('content', 'number', 'features'));
+
+  // Forcefully install the schema
+  drupal_install_schema('content');
+}
+
+
+/**
+ * Implementation of hook_enable().
+ *
+ * Create the issue field instance
+ */
+function fingerprint_server_enable() {
+  module_enable(array('content', 'number', 'features'));
+
   $field = array(
         'label' => 'Issue number',
         'field_name' => 'field_issue_number',
