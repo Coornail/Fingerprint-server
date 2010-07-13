@@ -73,3 +73,10 @@ function fingerprint_server_install() {
   content_field_instance_create($field);
 }
 
+
+/**
+ * Implementation of hook_uninstall().
+ */
+fingerprint_server_uninstall() {
+
+}
