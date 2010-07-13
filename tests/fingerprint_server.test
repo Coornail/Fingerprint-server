@@ -39,7 +39,7 @@ class fingerprint_server_registration extends DrupalWebTestCase {
     $fingerprint_user = $this->drupalCreateUser(array('create fingerprint content'));
     $this->drupalLogin($fingerprint_user);
     $this->drupalGet('node/add/fingerprint');
-    $this->assertText('Drupal.org issue number');
+    $this->assertText('Drupal.org issue number', t('Issue number field found'));
   }
 
 
