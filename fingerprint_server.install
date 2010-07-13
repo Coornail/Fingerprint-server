@@ -32,7 +32,7 @@ function fingerprint_server_enable() {
         'type' => 'number_integer',
         'widget_type' => 'number',
         'change' => 'Change basic information',
-        'weight' => '31',
+        'weight' => '-2',
         'description' => 'Drupal.org issue number',
         'default_value' =>
         array (
