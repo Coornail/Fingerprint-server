@@ -99,5 +99,6 @@ function fingerprint_server_enable() {
  * Implementation of hook_uninstall().
  */
 function fingerprint_server_uninstall() {
-
+  content_field_instance_delete('field_issue_number', 'fingerprint', TRUE);
 }
+

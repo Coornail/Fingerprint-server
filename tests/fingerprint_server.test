@@ -44,6 +44,19 @@ class fingerprint_server_registration extends DrupalWebTestCase {
 
 
   /**
+   * The fields should be removed after uninstall
+   */
+  public function testUninstall() {
+    drupal_uninstall_module('fingerprint_server');
+
+    $fingerprint_user = $this->drupalCreateUser(array('create fingerprint content'));
+    $this->drupalLogin($fingerprint_user);
+    $this->drupalGet('node/add/fingerprint');
+    $this->assertNoText('Drupal.org issue number', t('Issue number field is removed'));
+  }
+
+
+  /**
    * Tests user registration and email receiving
    */
   public function testRegistration() {
