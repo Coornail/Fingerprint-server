@@ -92,6 +92,9 @@ function fingerprint_server_enable() {
   module_load_include('inc', 'content', 'includes/content.crud');
   $field['type_name'] = 'fingerprint';
   content_field_instance_create($field);
+
+  // To regenerate services method cache
+  cache_clear_all('services:methods', 'cache');
 }
 
 
@@ -100,5 +103,7 @@ function fingerprint_server_enable() {
  */
 function fingerprint_server_uninstall() {
   content_field_instance_delete('field_issue_number', 'fingerprint', TRUE);
+  // To regenerate services method cache
+  cache_clear_all('services:methods', 'cache');
 }
 
