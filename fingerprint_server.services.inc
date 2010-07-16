@@ -12,7 +12,7 @@ function fingerprint_services_get_default_keys() {
 
 /** Service fingerprint.supportedVersion **/
 
-function fingerprint_services_supported_version() {
+function fingerprint_services_supported_version_access() {
   return TRUE;
 }
 
