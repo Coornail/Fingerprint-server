@@ -90,10 +90,12 @@ function fingerprint_server_service() {
       '#method'           => 'fingerprint.getDefaultKeys',
       '#callback'         => 'fingerprint_services_get_default_keys',
       '#access callback'  => 'fingerprint_services_get_default_keys_access',
-      '#file'             => array('file' => 'inc', 'module' => 'fingerprint_server.services'),
-      '#args'             => array(),
+      '#file'             => array('file' => 'services.inc', 'module' => 'fingerprint_server'),
       '#return'           => 'array',
       '#help'             => t('Get the array of default keys, last is the most recent'),
+      '#auth'             => FALSE,
+      '#key'              => FALSE,
+      '#arg'              => array(),
     ),
   );
 }
