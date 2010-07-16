@@ -8,3 +8,17 @@ function fingerprint_services_get_default_keys_access() {
 function fingerprint_services_get_default_keys() {
   return array();
 }
+
+
+/** Service fingerprint.supportedVersion **/
+
+function fingerprint_services_supported_version() {
+  return TRUE;
+}
+
+/**
+ * Returns the supported client version numbers
+ */
+function fingerprint_services_supported_version() {
+  return array('0.3');
+}

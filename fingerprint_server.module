@@ -97,5 +97,18 @@ function fingerprint_server_service() {
       '#key'              => FALSE,
       '#arg'              => array(),
     ),
+
+    array(
+      '#method'           => 'fingerprint.supportedVersion',
+      '#callback'         => 'fingerprint_services_supported_version',
+      '#access callback'  => 'fingerprint_services_supported_version_access',
+      '#file'             => array('file' => 'services.inc', 'module' => 'fingerprint_server'),
+      '#return'           => 'array',
+      '#help'             => t('Get the array of default keys, last is the most recent'),
+      '#auth'             => FALSE,
+      '#key'              => FALSE,
+      '#arg'              => array(),
+    ),
   );
 }
+
