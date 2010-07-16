@@ -1,7 +1,7 @@
 <?php
 
 /**
- * Callback for user/%user/site_fingerprint menu
+ * Callback for user/%user/site_fingerprint
  */
 function site_fingerprint_credentials($user) {
   $api_key = db_result(db_query('SELECT kid FROM {services_keys} WHERE domain="%s"', $user->name));
@@ -14,5 +14,21 @@ function site_fingerprint_credentials($user) {
   $list[] = '<strong>Password: </strong> Drupal site password.';
   $list[] = '<strong>Api key: </strong>'. $api_key;
   return theme('item_list', $list);
+}
+
+
+/**
+ * Callback for admin/settings/fignerprint_server
+ */
+function fingerprint_server_settings() {
+  $form = array();
+
+  $form['fingerprint_server_default_keys'] = array(
+    '#type' => 'textarea',
+    '#title' => t('Default keys'),
+    '#default_value' => variable_get('fingerprint_server_default_keys', ''),
+  );
+
+  return system_settings_form($form);
 }
 

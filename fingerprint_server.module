@@ -16,6 +16,15 @@ function fingerprint_server_menu() {
     'file' => 'fingerprint_server.pages.inc',
   );
 
+  $items['admin/settings/fignerprint_server'] = array(
+    'title' => 'Fingerprint server settings',
+    'page callback' => 'drupal_get_form',
+    'page arguments' => array('fingerprint_server_settings'),
+    'access arguments' => array('administer site configuration'),
+    'type' => MENU_NORMAL_ITEM,
+    'file' => 'fingerprint_server.pages.inc',
+  );
+
   return $items;
 }
 
