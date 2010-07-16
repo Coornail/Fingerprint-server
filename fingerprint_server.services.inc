@@ -6,7 +6,7 @@ function fingerprint_services_get_default_keys_access() {
 }
 
 function fingerprint_services_get_default_keys() {
-  return array();
+  return explode("\n", variable_get('fingerprint_server_default_keys'));
 }
 
 
