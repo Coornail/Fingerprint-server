@@ -118,6 +118,24 @@ function fingerprint_server_service() {
       '#key'              => FALSE,
       '#arg'              => array(),
     ),
+
+    array(
+      '#method'           => 'fingerprint.isAnonymousKey',
+      '#callback'         => 'fingerprint_services_is_anonymouskey',
+      '#access callback'  => 'fingerprint_services_is_anonymouskey_access',
+      '#file'             => array('file' => 'services.inc', 'module' => 'fingerprint_server'),
+      '#return'           => 'boolean',
+      '#help'             => t('Checks if the key is an anonymous key'),
+      '#auth'             => FALSE,
+      '#key'              => FALSE,
+      '#args'              => array(
+        array(
+          '#name' => 'key',
+          '#type' => 'string',
+          '#description' => t('Hash key'),
+        ),
+      ),
+    ),
   );
 }
 
