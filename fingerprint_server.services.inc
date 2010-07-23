@@ -6,12 +6,11 @@ function fingerprint_services_get_default_keys_access() {
 }
 
 function fingerprint_services_get_default_keys() {
-  return explode("\n", variable_get('fingerprint_server_default_keys'));
+  return explode("\n", variable_get('fingerprint_server_default_keys', ''));
 }
 
 
 /** Service fingerprint.supportedVersion **/
-
 function fingerprint_services_supported_version_access() {
   return TRUE;
 }
