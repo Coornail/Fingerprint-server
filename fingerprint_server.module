@@ -113,7 +113,7 @@ function fingerprint_server_service() {
       '#access callback'  => 'fingerprint_services_supported_version_access',
       '#file'             => array('file' => 'services.inc', 'module' => 'fingerprint_server'),
       '#return'           => 'array',
-      '#help'             => t('Get the array of default keys, last is the most recent'),
+      '#help'             => t('Get the array of supported versions'),
       '#auth'             => FALSE,
       '#key'              => FALSE,
       '#arg'              => array(),

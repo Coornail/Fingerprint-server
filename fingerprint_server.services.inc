@@ -23,7 +23,7 @@ function fingerprint_services_supported_version() {
 }
 
 
-/** Services fingerprint.isAnonymousKey **/
+/** Service fingerprint.isAnonymousKey **/
 function fingerprint_services_is_anonymouskey_access() {
   return TRUE;
 }
