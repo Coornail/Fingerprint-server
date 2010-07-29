@@ -136,6 +136,25 @@ function fingerprint_server_service() {
         ),
       ),
     ),
+
+    array(
+      '#method'           => 'fingerprint.save',
+      '#callback'         => 'fingerprint_services_save',
+      '#access callback'  => 'fingerprint_services_save_access',
+      '#file'             => array('file' => 'services.inc', 'module' => 'fingerprint_server'),
+      '#return'           => 'int',
+      '#help'             => t('Saves the fingerprint'),
+      '#auth'             => FALSE,
+      '#key'              => FALSE,
+      '#args'              => array(
+        array(
+          '#name' => 'fingerprint',
+          '#type' => 'object',
+          '#description' => t('Fingerprint node object'),
+        ),
+      ),
+    ),
+
   );
 }
 

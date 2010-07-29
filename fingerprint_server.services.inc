@@ -32,3 +32,18 @@ function fingerprint_services_is_anonymouskey($key) {
   $keys = fingerprint_services_get_default_keys();
   return (bool)in_array($key, $keys);
 }
+
+
+ /**
+  * Service fingerprint.save
+  *
+  * This is required, so we won't allow people to save whatever in the node they want
+  * It's also important because of the user matching.
+  **/
+function fingerprint_services_save_access() {
+  return TRUE;
+}
+
+function fingerprint_services_save($node) {
+  return TRUE;
+}
