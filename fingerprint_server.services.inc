@@ -34,6 +34,28 @@ function fingerprint_services_is_anonymouskey($key) {
 }
 
 
+/** Service fingerprint.registerKey **/
+function fingerprint_services_register_key_access() {
+  return TRUE;
+}
+
+function fingerprint_services_register_key($domain) {
+  module_load_include('inc', 'services_keyauth', 'services_keyauth.admin');
+  $key = array();
+  $key['kid'] = md5(uniqid(mt_rand(), TRUE));
+  $key['title'] = $domain;
+  $key['domain'] = $domain;
+  $key['method_access'] = array('system.connect', 'user.login', 'node.save');
+
+  $ret = services_keyauth_admin_keys_save(&$key);
+  if ($ret == SAVED_NEW) {
+    return $key['kid'];
+  }
+
+  return FALSE;
+}
+
+
  /**
   * Service fingerprint.save
   *

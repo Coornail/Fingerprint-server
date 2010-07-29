@@ -138,6 +138,24 @@ function fingerprint_server_service() {
     ),
 
     array(
+      '#method'           => 'fingerprint.registerKey',
+      '#callback'         => 'fingerprint_services_register_key',
+      '#access callback'  => 'fingerprint_services_register_key_access',
+      '#file'             => array('file' => 'services.inc', 'module' => 'fingerprint_server'),
+      '#return'           => 'string',
+      '#help'             => t('Register a key'),
+      '#auth'             => FALSE,
+      '#key'              => FALSE,
+      '#args'              => array(
+        array(
+          '#name' => 'domain',
+          '#type' => 'string',
+          '#description' => t('Domain (site name)'),
+        ),
+      ),
+    ),
+
+    array(
       '#method'           => 'fingerprint.save',
       '#callback'         => 'fingerprint_services_save',
       '#access callback'  => 'fingerprint_services_save_access',
