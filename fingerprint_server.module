@@ -142,17 +142,11 @@ function fingerprint_server_service() {
       '#callback'         => 'fingerprint_services_register_key',
       '#access callback'  => 'fingerprint_services_register_key_access',
       '#file'             => array('file' => 'services.inc', 'module' => 'fingerprint_server'),
-      '#return'           => 'string',
+      '#return'           => 'array',
       '#help'             => t('Register a key'),
       '#auth'             => FALSE,
       '#key'              => FALSE,
-      '#args'              => array(
-        array(
-          '#name' => 'domain',
-          '#type' => 'string',
-          '#description' => t('Domain (site name)'),
-        ),
-      ),
+      '#args'              => array(),
     ),
 
     array(
