@@ -74,10 +74,10 @@ function fingerprint_services_save_access() {
 function fingerprint_services_save($fingerprint) {
   $node = new stdClass();
   if (isset($fingerprint->nid)) {
-    $node->nid = $fingerprint->nid;
+    $node->nid = $fingerprint['nid'];
   }
-  $node->title = $fingerprint->title;
-  $node->body = $fingerprint->body;
+  $node->title = $fingerprint['title'];
+  $node->body = $fingerprint['body'];
   $node->type = 'fingerprint';
 
   node_save($node);
