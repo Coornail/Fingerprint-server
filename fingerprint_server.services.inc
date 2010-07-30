@@ -45,7 +45,7 @@ function fingerprint_services_register_key($domain) {
   $key['kid'] = md5(uniqid(mt_rand(), TRUE));
   $key['title'] = $domain;
   $key['domain'] = $domain;
-  $key['method_access'] = array('system.connect', 'user.login', 'node.save');
+  $key['method_access'] = array('system.connect', 'user.login', 'fingerprint.save');
 
   $ret = services_keyauth_admin_keys_save(&$key);
   if ($ret == SAVED_NEW) {
@@ -66,6 +66,16 @@ function fingerprint_services_save_access() {
   return TRUE;
 }
 
-function fingerprint_services_save($node) {
-  return TRUE;
+
+function fingerprint_services_save($fingerprint) {
+  $node = new stdClass();
+  if (isset($fingerprint->nid)) {
+    $node->nid = $fingerprint->nid;
+  }
+  $node->title = $fingerprint->title;
+  $node->body = $fingerprint->body;
+  $node->type = 'fingerprint';
+
+  node_save($node);
+  return $node;
 }

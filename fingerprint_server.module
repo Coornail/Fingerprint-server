@@ -162,12 +162,10 @@ function fingerprint_server_service() {
       '#file'             => array('file' => 'services.inc', 'module' => 'fingerprint_server'),
       '#return'           => 'int',
       '#help'             => t('Saves the fingerprint'),
-      '#auth'             => FALSE,
-      '#key'              => FALSE,
       '#args'              => array(
         array(
           '#name' => 'fingerprint',
-          '#type' => 'object',
+          '#type' => 'struct',
           '#description' => t('Fingerprint node object'),
         ),
       ),
