@@ -49,7 +49,7 @@ function fingerprint_services_register_key() {
   $key['kid'] = md5(uniqid(mt_rand(), TRUE));
   $key['domain'] = md5(uniqid(mt_rand(), TRUE));
   $key['title'] = $key['domain'];
-  $key['method_access'] = array('system.connect', 'user.login', 'fingerprint.save');
+  $key['method_access'] = array('system.connect', 'fingerprint.save');
 
   $ret = services_keyauth_admin_keys_save(&$key);
   if ($ret == SAVED_NEW) {
