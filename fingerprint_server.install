@@ -138,6 +138,7 @@ function fingerprint_server_enable() {
  * Implementation of hook_uninstall().
  */
 function fingerprint_server_uninstall() {
+  module_load_include('inc', 'content', 'includes/content.crud');
   content_field_instance_delete('field_issue_number', 'fingerprint', TRUE);
 
   drupal_uninstall_schema('fingerprint_server');
