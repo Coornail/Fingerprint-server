@@ -79,6 +79,7 @@ function fingerprint_services_save($fingerprint) {
   $node->title = $fingerprint['title'];
   $node->body = $fingerprint['body'];
   $node->type = 'fingerprint';
+  $node->status = TRUE; // by default it's public
 
   node_save($node);
   return $node;
