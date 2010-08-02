@@ -69,6 +69,7 @@ class fingerprint_server_registration extends DrupalWebTestCase {
 
     // Register a key
     $key = fingerprint_services_register_key();
+    $key = $key['kid'];
     fingerprint_services_save($node);
 
     // Log in as anonymous user
@@ -100,7 +101,7 @@ class fingerprint_server_registration extends DrupalWebTestCase {
     // Fill in the form
     $edit = array(
       'project_name' => $this->randomName(),
-      'key' => $key,
+      'kid' => $key,
     );
     $this->drupalPost($this->getUrl(), $edit, 'Associate');
     $this->assertText('Key associated');
