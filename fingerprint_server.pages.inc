@@ -52,6 +52,25 @@ function fingerprint_server_key_add() {
 }
 
 
+/**
+ * Validation form of the fingerprint key association
+ */
+function fingerprint_server_key_add_validate($form, &$form_state) {
+  // Length check
+  if (strlen($form_state['values']['kid']) !== 32) {
+    form_set_error('kid', 'Key should be 32 character long');
+  }
+
+  // Key exists?
+  if (db_result(db_query('SELECT kid FROM {services_keys} WHERE kid="%s"', $form_state['values']['kid'])) === FALSE) {
+    form_set_error('kid', 'No such key');
+  }
+
+  // Key already associated?
+  if (db_result(db_query('SELECT uid FROM {fingerprint_keys} WHERE kid="%s"', $form_state['values']['kid'])) !== FALSE) {
+    form_set_error('kid', 'Key already associated');
+  }
+}
 
 
 /**
