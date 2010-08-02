@@ -76,7 +76,7 @@ class fingerprint_server_registration extends DrupalWebTestCase {
     $this->assertResponse(200);
 
     // The user registers
-    $fingerprint_user = $this->drupalCreateUser(array('delete own fingerprint content', 'access own fingerprint content'));
+    $fingerprint_user = $this->drupalCreateUser(array('delete own fingerprint content', 'access own fingerprint content', 'access anonymous fingerprint content'));
     $this->drupalLogin($fingerprint_user);
 
     // Goes to my account page
