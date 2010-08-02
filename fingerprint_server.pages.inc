@@ -25,8 +25,11 @@ function site_fingerprint_credentials($user) {
  * @defgroup fingerprint_server_key_add Key association forms
  * @{
  * Associates an existing key to the current user
+ * @global $user
  */
 function fingerprint_server_key_add() {
+  global $user;
+
   $form = array();
 
   $form['project_name'] = array(
@@ -47,6 +50,8 @@ function fingerprint_server_key_add() {
   );
 
   $form['submit'] = array('#type' => 'submit', '#value' => t('Add'));
+
+  $form['#redirect'] = 'user/'. $user->uid .'/fingerprint';
 
   return $form;
 }
