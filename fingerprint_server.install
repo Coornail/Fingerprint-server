@@ -43,9 +43,9 @@ function fingerprint_server_schema() {
         'not null' => TRUE,
       ),
     ),
-    'primary key' => array('uid'),
+    'primary key' => array('kid'),
     'unique keys' => array(
-       'kid' => array('kid', 'project_name')
+       'kid' => array('project_name')
     ),
   );
 
