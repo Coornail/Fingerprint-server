@@ -44,9 +44,6 @@ function fingerprint_server_schema() {
       ),
     ),
     'primary key' => array('kid'),
-    'unique keys' => array(
-       'kid' => array('project_name')
-    ),
   );
 
   return $schema;
