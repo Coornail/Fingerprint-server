@@ -66,6 +66,9 @@ class fingerprint_server_registration extends DrupalWebTestCase {
       'body' => serialize(array()),
     );
     module_load_include('inc', 'fingerprint_server', 'fingerprint_server.services');
+
+    // Register a key
+    $key = fingerprint_services_register_key();
     fingerprint_services_save($node);
 
     // The node should be pulbic
