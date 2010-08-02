@@ -16,6 +16,26 @@ function fingerprint_server_menu() {
     'file' => 'fingerprint_server.pages.inc',
   );
 
+  $items['user/%user/fingerprint/list'] = array(
+    'title' => 'List',
+    'type' => MENU_DEFAULT_LOCAL_TASK,
+    'load arguments' => array('%map', '%index'),
+    'access callback' => 'user_edit_access',
+    'access arguments' => array(1),
+    'weight' => -10,
+  );
+
+  $items['user/%user/fingerprint/add'] = array(
+    'title' => 'Associate project',
+    'page callback' => 'drupal_get_form',
+    'page arguments' => array('fingerprint_server_key_add'),
+    'access callback' => 'user_edit_access',
+    'access arguments' => array(1),
+    'type' => MENU_LOCAL_TASK,
+    'load arguments' => array('%map', '%index'),
+    'file' => 'fingerprint_server.pages.inc',
+  );
+
   $items['admin/settings/fignerprint_server'] = array(
     'title' => 'Fingerprint server settings',
     'page callback' => 'drupal_get_form',
