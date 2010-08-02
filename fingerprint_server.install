@@ -19,6 +19,41 @@ function fingerprint_server_install() {
 
 
 /**
+ * Implementation of hook_schema().
+ */
+function fingerprint_server_schema() {
+  $schema['fingerprint_keys'] = array(
+    'description' => t('Stores fingerprint and services key relations'),
+    'fields' => array(
+      'kid' => array(
+        'description' => t('Services key id'),
+        'type' => 'varchar',
+        'length' => '42',
+        'not null' => TRUE,
+      ),
+      'uid' => array(
+        'description' => t('User id'),
+        'type' => 'int',
+        'not null' => TRUE,
+      ),
+      'project_name' => array(
+        'description' => t('Name of the project'),
+        'type' => 'varchar',
+        'length' => '64',
+        'not null' => TRUE,
+      ),
+    ),
+    'primary key' => array('uid'),
+    'unique keys' => array(
+       'kid' => array('kid', 'project_name')
+    ),
+  );
+
+  return $schema;
+}
+
+
+/**
  * Implementation of hook_enable().
  *
  * Create the issue field instance
@@ -93,6 +128,7 @@ function fingerprint_server_enable() {
   $field['type_name'] = 'fingerprint';
   content_field_instance_create($field);
 
+  drupal_install_schema('fingerprint_server');
   // To regenerate services method cache
   cache_clear_all('services:methods', 'cache');
 }
@@ -103,6 +139,8 @@ function fingerprint_server_enable() {
  */
 function fingerprint_server_uninstall() {
   content_field_instance_delete('field_issue_number', 'fingerprint', TRUE);
+
+  drupal_uninstall_schema('fingerprint_server');
   // To regenerate services method cache
   cache_clear_all('services:methods', 'cache');
 }
