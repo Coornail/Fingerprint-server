@@ -18,7 +18,7 @@ class fingerprint_server_registration extends DrupalWebTestCase {
     return array(
       'name' => t('Fingerprint server registration'),
       'description' => t('Registration and email sending'),
-      'group' => t('Pronovix'),
+      'group' => t('Fingerprint'),
     );
   }
 
