@@ -15,7 +15,11 @@ function site_fingerprint_credentials($user) {
     return theme('table', $header, $key_table);
   }
 
-  return t('No key associated with your account') . '<br/ >'. l('Associate project', 'user/'. $user->uid .'/fingerprint/add');
+  return t('No key associated with your account');
+}
+
+function fingerprint_server_key_add() {
+  return array();
 }
 
 
