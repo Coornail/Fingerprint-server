@@ -74,7 +74,7 @@ function fingerprint_server_key_add_validate($form, &$form_state) {
 
 
 /**
- * Saves the fignerprint key association
+ * Saves the fingerprint key association
  * @global $user
  */
 function fingerprint_server_key_add_submit($form, &$form_state) {
