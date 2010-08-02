@@ -49,7 +49,7 @@ function fingerprint_server_key_add() {
     '#required' => TRUE,
   );
 
-  $form['submit'] = array('#type' => 'submit', '#value' => t('Add'));
+  $form['submit'] = array('#type' => 'submit', '#value' => t('Associate'));
 
   $form['#redirect'] = 'user/'. $user->uid .'/fingerprint';
 

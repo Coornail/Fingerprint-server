@@ -102,7 +102,7 @@ class fingerprint_server_registration extends DrupalWebTestCase {
       'project_name' => $this->randomName(),
       'key' => $key,
     );
-    $this->drupalPost($this->getUrl(), $edit);
+    $this->drupalPost($this->getUrl(), $edit, 'Associate');
     $this->assertText('Key associated');
 
     // On the profile page it should appear
