@@ -52,6 +52,21 @@ function fingerprint_server_key_add() {
 }
 
 
+
+
+/**
+ * Saves the fignerprint key association
+ * @global $user
+ */
+function fingerprint_server_key_add_submit($form, &$form_state) {
+  global $user;
+
+  $fingerprint_key = new stdClass();
+  $fingerprint_key->kid = $form_state['values']['kid'];
+  $fingerprint_key->project_name = $form_state['values']['project_name'];
+  $fingerprint_key->uid = $user->uid;
+  drupal_write_record('fingerprint_keys', $fingerprint_key);
+}
 /**
  * @} fingerprint_server_key_add
  */
