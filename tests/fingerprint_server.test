@@ -57,17 +57,59 @@ class fingerprint_server_registration extends DrupalWebTestCase {
 
 
   /**
-   * Tests user registration and email receiving
+   * Tests user authentication
    */
-  public function testRegistration() {
-    $this->drupalGet('user/register');
+  public function testAuthenticate() {
+    // Submit anonymous node trough xmlrpc
+    $node = array(
+      'title' => user_password(),
+      'body' => serialize(array()),
+    );
+    module_load_include('inc', 'fingerprint_server', 'fingerprint_server.services');
+    fingerprint_services_save($node);
 
-    $edit['name'] = $this->randomName();
-    $edit['mail'] = $edit['name'] . '@example.com';
+    // The node should be pulbic
+    $this->drupalGet('node/1');
+    $this->assertResponse(200);
 
-    $this->drupalPost('user/register', $edit, t('Create new account'));
-    $captured_emails = variable_get('drupal_test_email_collector', array());
-    $this->assertEqual(count($captured_emails), 2 , t('2 emails sent'));
+    // The user registers
+    $fingerprint_user = $this->drupalCreateUser(array('delete own fingerprint content', 'access own fingerprint content'));
+    $this->drupalLogin($fingerprint_user);
+
+    // Goes to my account page
+    $this->drupalGet('user/'. $fingerprint_user->uid);
+    $this->assertLink('Fingerprint');
+    $this->clickLink('Fingerprint');
+
+    // No key should be registered yet
+    $this->assertText('No key associated with your account');
+
+    // Click on the register link
+    $this->assertLink('Associate project');
+    $this->clickLink('Associate project');
+
+    // Fill in the form
+    $edit = array(
+      'project_name' => $this->randomName(),
+      'key' => $key,
+    );
+    $this->drupalPost($this->getUrl(), $edit);
+    $this->assertText('Key associated');
+
+    // On the profile page it should appear
+    $this->drupalGet('user/'. $fingerprint_user->uid);
+    $this->clickLink('Fingerprint');
+    $this->assertText($key);
+
+    // The node should be visible for the user
+    $this->drupalGet('node/1');
+    $this->assertResponse(200);
+    $this->assertEqual($fingerprint_user->uid, db_result(db_query('SELECT uid FROM node WHERE nid=1')), 'Node is owned by the associated user');
+
+    // For everyone else the node should not be visible
+    $this->drupalLogout();
+    $this->drupalGet('node/1');
+    $this->assertResponse(403);
   }
 
 }
