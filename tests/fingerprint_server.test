@@ -71,9 +71,15 @@ class fingerprint_server_registration extends DrupalWebTestCase {
     $key = fingerprint_services_register_key();
     fingerprint_services_save($node);
 
+    // Log in as anonymous user
+    $anon_user =  $this->drupalCreateUser(array('access anonymous fingerprint content'));
+    $this->drupalLogin($anon_user);
+
     // The node should be pulbic
     $this->drupalGet('node/1');
     $this->assertResponse(200);
+
+    $this->drupalLogout();
 
     // The user registers
     $fingerprint_user = $this->drupalCreateUser(array('delete own fingerprint content', 'access own fingerprint content', 'access anonymous fingerprint content'));
