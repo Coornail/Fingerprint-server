@@ -7,7 +7,7 @@ function site_fingerprint_credentials($user) {
   $query = db_query('SELECT * FROM {fingerprint_keys} WHERE uid=%d', $user->uid);
   $key_table = array();
   while($row = db_fetch_object($query)) {
-     $key_table[] = array($query->project_name, $query->kid);
+     $key_table[] = array($row->project_name, $row->kid);
   }
 
   if (!empty($key_table)) {
