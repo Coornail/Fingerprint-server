@@ -7,11 +7,11 @@ function site_fingerprint_credentials($user) {
   $query = db_query('SELECT * FROM {fingerprint_keys} WHERE uid=%d', $user->uid);
   $key_table = array();
   while($row = db_fetch_object($query)) {
-     $key_table[] = array($row->project_name, $row->kid);
+     $key_table[] = array($row->project_name, $row->kid, format_date($row->date, 'small'));
   }
 
   if (!empty($key_table)) {
-    $header = array(t('Project name'), t('Key'));
+    $header = array(t('Project name'), t('Key'), t('Insertion date'));
     return theme('table', $header, $key_table);
   }
 
@@ -89,6 +89,7 @@ function fingerprint_server_key_add_submit($form, &$form_state) {
   $fingerprint_key->kid = $form_state['values']['kid'];
   $fingerprint_key->project_name = $form_state['values']['project_name'];
   $fingerprint_key->uid = $user->uid;
+  $fingerprint_key->date = time();
   drupal_write_record('fingerprint_keys', $fingerprint_key);
 }
 /**

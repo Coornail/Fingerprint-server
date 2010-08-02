@@ -42,6 +42,11 @@ function fingerprint_server_schema() {
         'length' => '64',
         'not null' => TRUE,
       ),
+      'date' => array(
+        'description' => t('Current date'),
+        'type' => 'int',
+        'not null' => TRUE,
+      ),
     ),
     'primary key' => array('kid'),
   );
