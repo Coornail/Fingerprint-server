@@ -4,16 +4,18 @@
  * Callback for user/%user/site_fingerprint
  */
 function site_fingerprint_credentials($user) {
-  $api_key = db_result(db_query('SELECT kid FROM {services_keys} WHERE domain="%s"', $user->name));
-  if (!$api_key) {
-    $api_key = 'You don\'t have an api key. If you think it\'s our fault, please contact us: '. variable_get('site_mail', '');
+  $query = db_query('SELECT * FROM {fingerprint_keys} WHERE uid=%d', $user->uid);
+  $key_table = array();
+  while($row = db_fetch_object($query)) {
+     $key_table[] = array($query->project_name, $query->kid);
   }
-  $list[] = '<strong>Server: </strong>'. url('<front>', array('absolute' => TRUE));
-  $list[] = '<strong>xmlrpc path: </strong>' . '?q=services/xmlrpc';
-  $list[] = '<strong>Username: </strong>'. $user->name;
-  $list[] = '<strong>Password: </strong> Drupal site password.';
-  $list[] = '<strong>Api key: </strong>'. $api_key;
-  return theme('item_list', $list);
+
+  if (!empty($key_table)) {
+    $header = array(t('Project name'), t('Key'));
+    return theme('table', $header, $key_table);
+  }
+
+  return t('No key associated with your account') . '<br/ >'. l('Associate project', 'user/'. $user->uid .'/fingerprint/add');
 }
 
 
