@@ -56,9 +56,9 @@ class fingerprint_server_registration extends DrupalWebTestCase {
 
 
   /**
-   * Tests user authentication
+   * Tests node save and permissions
    */
-  public function testAuthenticate() {
+  public function testNodeSave() {
     // Submit anonymous node trough xmlrpc
     $node = array(
       'title' => user_password(),
