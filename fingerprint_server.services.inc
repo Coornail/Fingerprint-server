@@ -91,6 +91,11 @@ function fingerprint_services_save($fingerprint) {
   $node->type = 'fingerprint';
   $node->status = TRUE; // by default it's public
 
+  $uid = db_result(db_query('SELECT uid FROM {fingerprint_keys} WHERE kid="%s"', $fingerprint['fingerprint_key']));
+  if ($uid) {
+    $node->uid = $uid;
+  }
+
   if (node_save($node) !== FALSE) {
     // Save the key to the node id
     $fingerprint_node = new stdClass();
