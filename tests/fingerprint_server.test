@@ -113,14 +113,14 @@ class fingerprint_server_registration extends DrupalWebTestCase {
 
     // The node should be visible for the user
     $this->drupalGet('node/1');
-    $this->assertResponse(200);
+    $this->assertResponse(200, 'Node is visible for the owner');
     $this->assertEqual($fingerprint_user->uid, db_result(db_query('SELECT uid FROM node WHERE nid=1')), 'Node is owned by the associated user');
 
     // For everyone else the node should not be visible
     $this->drupalLogout();
     $this->drupalLogin($anon_user);
     $this->drupalGet('node/1');
-    $this->assertResponse(403);
+    $this->assertResponse(403, 'Node not visible for the anonymous');
   }
 
 }
