@@ -51,6 +51,24 @@ function fingerprint_server_schema() {
     'primary key' => array('kid'),
   );
 
+  $schema['fingerprint_node'] = array(
+    'description' => t('Stores which node was saved with which key'),
+    'fields' => array(
+      'nid' => array(
+        'description' => t('Node id'),
+        'type' => 'int',
+        'not null' => TRUE,
+      ),
+      'kid' => array(
+        'description' => t('Services key id'),
+        'type' => 'varchar',
+        'length' => '32',
+        'not null' => TRUE,
+      ),
+    ),
+    'primary key' => array('nid'),
+  );
+
   return $schema;
 }
 
