@@ -21,11 +21,11 @@ function site_fingerprint_credentials($user) {
 
 /**
  * Callback for user/%user/fingerprint/add
- *
- * @defgroup fingerprint_server_key_add Key association forms
- * @{
  * Associates an existing key to the current user
- * @global $user
+ * @ingroup forms
+ *
+ * @defgroup fingerprint_server_key_add Key association form
+ * @{
  */
 function fingerprint_server_key_add() {
   global $user;
@@ -80,7 +80,6 @@ function fingerprint_server_key_add_validate($form, &$form_state) {
 
 /**
  * Saves the fingerprint key association
- * @global $user
  */
 function fingerprint_server_key_add_submit($form, &$form_state) {
   global $user;
@@ -109,6 +108,7 @@ function fingerprint_server_key_add_submit($form, &$form_state) {
 
 /**
  * Callback for admin/settings/fignerprint_server
+ * @ingroup forms
  */
 function fingerprint_server_settings() {
   $form = array();

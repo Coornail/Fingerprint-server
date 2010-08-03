@@ -81,6 +81,14 @@ function fingerprint_services_save_access() {
 }
 
 
+/**
+ * Saves a fingerprint node
+ * It will only save the necessary information from the node.
+ * If the key is iset in fingerprint_keys, it will save the user
+ *
+ * @param $fingerprint
+ *   Fingerprint node object
+ */
 function fingerprint_services_save($fingerprint) {
   $node = new stdClass();
   if (isset($fingerprint['nid'])) {
