@@ -116,7 +116,7 @@ class fingerprint_server_registration extends DrupalWebTestCase {
     // The node should be visible for the user
     $this->drupalGet('node/1');
     $this->assertResponse(200, 'Node is visible for the owner');
-    $this->assertEqual($fingerprint_user->uid, db_result(db_query('SELECT uid FROM node WHERE nid=1')), 'Node is owned by the associated user');
+    $this->assertEqual($fingerprint_user->uid, db_result(db_query('SELECT uid FROM {node} WHERE nid=1')), 'Node is owned by the associated user');
 
     // @todo submit an another node by this user
 
