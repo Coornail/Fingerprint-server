@@ -110,7 +110,8 @@ function fingerprint_services_save($fingerprint) {
     $node->uid = $uid;
   }
 
-  if (node_save($node) !== FALSE) {
+  node_save($node);
+  if ($node !== FALSE) {
     // Save the key to the node id
     $fingerprint_node = new stdClass();
     $fingerprint_node->nid = $node->nid;
