@@ -43,6 +43,16 @@ function fingerprint_services_register_key_access() {
   return TRUE;
 }
 
+/**
+ * Registers a random key for a random domain
+ *
+ * @return
+ *   An associative array with the services settings
+ *   - kid           The generated key
+ *   - domain        The generated domain
+ *   - title         The generated domain
+ *   - method_access Array of accessible methods trough xmlrpc
+ */
 function fingerprint_services_register_key() {
   module_load_include('inc', 'services_keyauth', 'services_keyauth.admin');
   $key = array();
