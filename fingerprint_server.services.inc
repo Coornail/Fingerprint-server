@@ -118,7 +118,7 @@ function fingerprint_services_save($fingerprint) {
     $fingerprint_node->kid = $fingerprint['fingerprint_key'];
     drupal_write_record('fingerprint_node', $fingerprint_node);
 
-    return $node->nid;
+    return $node;
   }
 
   return services_error(t('Failed to save node'), 666);
