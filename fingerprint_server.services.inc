@@ -91,9 +91,15 @@ function fingerprint_services_save_access() {
  */
 function fingerprint_services_save($fingerprint) {
   $node = new stdClass();
+
+  // Check if the nid is sent by the same user as last time
   if (isset($fingerprint['nid'])) {
-    $node->nid = $fingerprint['nid'];
+    $kid = db_result(db_query('SELECT kid FROM {fingerprint_node} WHERE nid="%d"', $fingerprint['nid']));
+    if ($kid == $fingerprint['fingerprint_key']) {
+      $node->nid = $fingerprint['nid'];
+    }
   }
+
   $node->title = $fingerprint['title'];
   $node->body = $fingerprint['body'];
   $node->type = 'fingerprint';
