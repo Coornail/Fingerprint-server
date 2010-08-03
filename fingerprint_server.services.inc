@@ -91,9 +91,7 @@ function fingerprint_services_save($fingerprint) {
   $node->type = 'fingerprint';
   $node->status = TRUE; // by default it's public
 
-
   if (node_save($node)) {
-
     // Save the key to the node id
     $fingerprint_node = new stdClass();
     $fingerprint_node->nid = $node->nid;
