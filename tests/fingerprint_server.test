@@ -78,7 +78,7 @@ class fingerprint_server_registration extends DrupalWebTestCase {
 
     // The node should be pulbic
     $this->drupalGet('node/1');
-    $this->assertResponse(200);
+    $this->assertResponse(200, 'Node is visible for the anonymous user');
 
     $this->drupalLogout();
 
