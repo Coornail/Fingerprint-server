@@ -78,7 +78,7 @@ class fingerprint_server_registration extends DrupalWebTestCase {
     $anon_user =  $this->drupalCreateUser(array('access anonymous fingerprint content'));
     $this->drupalLogin($anon_user);
 
-    // The node should be pulbic
+    // The node should be public
     $this->drupalGet('node/1');
     $this->assertResponse(200, 'Node is visible for the anonymous user');
 
