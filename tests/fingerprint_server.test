@@ -118,12 +118,32 @@ class fingerprint_server_registration extends DrupalWebTestCase {
     $this->assertResponse(200, 'Node is visible for the owner');
     $this->assertEqual($fingerprint_user->uid, db_result(db_query('SELECT uid FROM {node} WHERE nid=1')), 'Node is owned by the associated user');
 
-    // @todo submit an another node by this user
-
     // For everyone else the node should not be visible
     $this->drupalLogout();
     $this->drupalLogin($anon_user);
     $this->drupalGet('node/1');
+    $this->assertResponse(403, 'Node not visible for the anonymous');
+
+    $this->drupalLogout();
+    $this->drupalLogin($fingerprint_user);
+
+    // Submiting an another node by the authenticated user
+    $node = array(
+      'title' => user_password(),
+      'body' => serialize(array('export_version' => '0.2')),
+      'fingerprint_key' => $key,
+    );
+
+    fingerprint_services_save($node); // @todo check here
+
+    // Node should be visible for the user
+    $this->drupalGet('node/2');
+    $this->assertResponse(200, 'Node is visible for the owner');
+    $this->assertEqual($fingerprint_user->uid, db_result(db_query('SELECT uid FROM {node} WHERE nid=2')), 'Node is owned by the associated user');
+
+    $this->drupalLogout();
+    $this->drupalLogin($anon_user);
+    $this->drupalGet('node/2');
     $this->assertResponse(403, 'Node not visible for the anonymous');
   }
 
