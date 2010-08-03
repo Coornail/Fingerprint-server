@@ -93,6 +93,13 @@ function fingerprint_services_save($fingerprint) {
 
 
   if (node_save($node)) {
+
+    // Save the key to the node id
+    $fingerprint_node = new stdClass();
+    $fingerprint_node->nid = $node->nid;
+    $fingerprint_node->kid = $fingerprint['fingerprint_key'];
+    drupal_write_record('fingerprint_node', $fingerprint_node);
+
     return $node->nid;
   }
 
