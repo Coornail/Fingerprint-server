@@ -113,7 +113,7 @@ function fingerprint_server_service() {
       '#callback'         => 'fingerprint_services_save',
       '#access callback'  => 'fingerprint_services_save_access',
       '#file'             => array('file' => 'services.inc', 'module' => 'fingerprint_server'),
-      '#return'           => 'int',
+      '#return'           => 'struct',
       '#help'             => t('Saves the fingerprint'),
       '#args'              => array(
         array(
