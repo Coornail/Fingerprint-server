@@ -91,6 +91,15 @@ function fingerprint_server_key_add_submit($form, &$form_state) {
   $fingerprint_key->uid = $user->uid;
   $fingerprint_key->date = time();
   drupal_write_record('fingerprint_keys', $fingerprint_key);
+
+  // Give all the nodes with that kid to the user
+  $result = db_query('SELECT nid FROM {fingerprint_node} WHERE kid="%s"', $fingerprint_key->kid);
+  while ($row = db_fetch_object($result)) {
+    $n = node_load($row->nid);
+    $n->uid = $user->uid;
+    $n = node_save($n);
+  }
+
   drupal_set_message('Key associated');
 }
 /**
