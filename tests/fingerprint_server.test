@@ -11,10 +11,9 @@
  */
 
 class fingerprint_server_registration extends DrupalWebTestCase {
-  var $info;
   /**
-  * Implementation of getInfo().
-  */
+   * Implementation of getInfo().
+   */
   public static function getInfo() {
     return array(
       'name' => t('Fingerprint server registration'),
@@ -25,8 +24,8 @@ class fingerprint_server_registration extends DrupalWebTestCase {
 
 
   /**
-  * Implementation of setUp().
-  */
+   * Implementation of setUp().
+   */
   public function setUp() {
     parent::setUp('fingerprint_server', 'services', 'services_keyauth', 'content', 'number', 'fingerprint');
   }
