@@ -5,8 +5,9 @@
  * @file
  *  Tests for fingerprint server module
  *
- *  Copyright 2010 by Kornel Lugosi (Coornail)
- *  Pronovix
+ * @author
+ *   Kornel Lugosi (Coornail)
+ *   Pronovix
  */
 
 class fingerprint_server_registration extends DrupalWebTestCase {
