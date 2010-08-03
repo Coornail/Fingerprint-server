@@ -19,7 +19,7 @@ function fingerprint_services_supported_version_access() {
  * Returns the supported client version numbers
  */
 function fingerprint_services_supported_version() {
-  return array('0.3');
+  return array('0.2');
 }
 
 
