@@ -92,5 +92,5 @@ function fingerprint_services_save($fingerprint) {
   $node->status = TRUE; // by default it's public
 
   node_save($node);
-  return $node;
+  return $node->nid;
 }
