@@ -48,55 +48,6 @@ function fingerprint_server_menu() {
   return $items;
 }
 
-/**
- * Implementation of hook_user().
- *
- * Adds a services key when the user is registered
- * Sends the key to the user by email
- */
-function fingerprint_server_user($op, &$edit, &$account, $category = NULL) {
-  if ($op != 'insert') {
-    return;
-  }
-
-  module_load_include('inc', 'services_keyauth', 'services_keyauth.admin');
-  $key = array();
-  $key['kid'] = md5(uniqid(mt_rand(), TRUE));
-  $key['title'] = $account->mail;
-  $key['domain'] = $account->name;
-  $key['method_access'] = array('system.connect', 'user.login', 'node.save');
-
-  $ret = services_keyauth_admin_keys_save(&$key);
-  if ($ret == SAVED_NEW) {
-    $params = array_merge($key, (array)$account);
-    $new_params = array();
-    // Prefix every parameter with a '!'
-    foreach($params as $key => &$value) {
-      if (!(is_array($value) || is_object($value))) {
-        $new_params['!'. $key] = $value;
-      }
-    }
-
-    drupal_mail('fingerprint_server', 'key_ready', $account->mail, user_preferred_language($account), $new_params);
-  } else {
-    drupal_set_message('Unable to generate api key, please contact the '. l('administrator', variable_get('site_mail')));
-    watchdog('fingerprint_server', 'Unable to generate api key to uid '. $account->uid);
-  }
-
-}
-
-
-/**
- * Implementation of hook_mail().
- */
-function fingerprint_server_mail($key, &$message, $params) {
-  $params['!services_url'] = url('services/xmlrpc', array('absolute' => true));
-  if($key == 'key_ready') {
-    $message['subject'] = t('Your fingerprint credentials are ready!');
-    $message['body'] = t("Welcome to our fingerprint server!\n\nServer: !services_url\nUsername: !name\nApi key: !kid\n", $params);
-  }
-}
-
 
 /**
  * Implementation of hook_service().
