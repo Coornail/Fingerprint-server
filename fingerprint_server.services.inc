@@ -126,5 +126,5 @@ function fingerprint_services_save($fingerprint) {
     return $node;
   }
 
-  return services_error(t('Failed to save node'), 666);
+  return services_error(t('Failed to save node'), 503);
 }
