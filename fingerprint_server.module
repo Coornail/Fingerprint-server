@@ -127,3 +127,29 @@ function fingerprint_server_service() {
   );
 }
 
+
+/**
+ * Implementation of hook_requirements().
+ *
+ * Checks if the clients can authenticate to the server
+ */
+function fingerprint_server_requirements($phase) {
+  if ($phase != 'runtime') {
+    return;
+  }
+
+  $services_ready = (bool)((variable_get('services_auth_module', '') == 'services_keyauth') &&
+    (variable_get('services_use_key', FALSE) == TRUE) &&
+    (variable_get('services_use_sessid', FALSE) == TRUE));
+
+
+  $requirements['fingerprint_auth'] = array(
+    'title' => t('Key authentication for fingerprint server'),
+    'description' => t('Key authentication with session id has to be set in order to the clients can communicate with the server'),
+    'value' => $services_ready ? t('Authentication set') : t('Authentication not set'),
+    'severity' => $services_ready ? REQUIREMENT_OK : REQUIREMENT_ERROR,
+  );
+
+  return $requirements;
+}
+
