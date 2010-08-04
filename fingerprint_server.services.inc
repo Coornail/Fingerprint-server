@@ -90,6 +90,11 @@ function fingerprint_services_save_access() {
  *   Fingerprint node object
  */
 function fingerprint_services_save($fingerprint) {
+  // If the key auth module is not configured we might get all the authentication data
+  if (count(func_get_args()) > 1) {
+    return services_error(t('Server is not configured yet'), 503);
+  }
+
   $node = new stdClass();
 
   // Check if the nid is sent by the same user as last time
