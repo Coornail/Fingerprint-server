@@ -4,13 +4,11 @@ core = 6.x
 dependencies[] = fingerprint
 dependencies[] = services
 dependencies[] = services_keyauth
-dependencies[] = node_service
 dependencies[] = system_service
-dependencies[] = user_service
 dependencies[] = xmlrpc_server
 dependencies[] = number
 dependencies[] = content
 package = Pronovix
 
-version = 0.4
+version = 0.41
 
