@@ -8,6 +8,3 @@ dependencies[] = system_service
 dependencies[] = xmlrpc_server
 dependencies[] = number
 dependencies[] = content
-
-version = 0.41
-
