@@ -1,4 +1,5 @@
 <?php
+// $Id$
 
 /** Service fingerprint.getDefaultKeys **/
 function fingerprint_services_get_default_keys_access() {

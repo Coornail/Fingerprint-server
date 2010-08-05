@@ -1,4 +1,5 @@
 <?php
+// $Id$
 
 /**
  * Callback for user/%user/site_fingerprint
