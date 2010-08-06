@@ -1,3 +1,4 @@
+; $Id$
 name = Fingerprint server
 description = Manages the services subscriptions/keys
 core = 6.x
